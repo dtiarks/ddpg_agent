@@ -151,15 +151,15 @@ class DDPGAgent(object):
             tf.summary.histogram('histogram',tf.to_float(self.cr_predict.out))
             self.variable_summaries(self.cr_target.out)
             tf.summary.histogram('histogram',tf.to_float(self.cr_target.out))
-        for w in self.cr_predict.params_list:
-            with tf.name_scope("critic_"+w.name.split("/")[-1].split(":")[0]):
-                self.variable_summaries(w)
-        for w in self.cr_target.params_list:
-            with tf.name_scope("critic_target_"+w.name.split("/")[-1].split(":")[0]):
-                self.variable_summaries(w)
-        for w in self.ac_predict.params_list:
-            with tf.name_scope("actor_"+w.name.split("/")[-1].split(":")[0]):
-                self.variable_summaries(w)
+#        for w in self.cr_predict.params_list:
+#            with tf.name_scope("critic_"+w.name.split("/")[-1].split(":")[0]):
+#                self.variable_summaries(w)
+#        for w in self.cr_target.params_list:
+#            with tf.name_scope("critic_target_"+w.name.split("/")[-1].split(":")[0]):
+#                self.variable_summaries(w)
+#        for w in self.ac_predict.params_list:
+#            with tf.name_scope("actor_"+w.name.split("/")[-1].split(":")[0]):
+#                self.variable_summaries(w)
         with tf.name_scope("actor"):
             self.variable_summaries(self.ac_predict.scaled_out)
             tf.summary.histogram('histogram',tf.to_float(self.ac_predict.scaled_out))

@@ -454,15 +454,15 @@ if __name__ == '__main__':
                         
                             
                     if done: 
-                        if i%params["metricupdate"]==0:
-                            dtFrame=(t2Frame-t1Frame)
-                            t2=time.clock()
-                            if t>0:
-                                rate=ep_ctr/(t2-t1)
-                                print("\r[Epis: {} || it-rate: {} || Loss: {} || Reward: {}|| Frame: {}]".format(i,rate,loss,rcum,c),end='')
+#                        if i%params["metricupdate"]==0:
+                        dtFrame=(t2Frame-t1Frame)
+                        t2=time.clock()
+                        if t>0:
+                            rate=ep_ctr/(t2-t1)
+                            print("\r[Epis: {} || it-rate: {} || Loss: {} || Reward: {}|| Frame: {}]".format(i,rate,loss,rcum,c),end='')
                             
-                            sys.stdout.flush()
-                            ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
+                        sys.stdout.flush()
+                        ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
                         break
                     
                 dtFrame=(t2Frame-t1Frame)

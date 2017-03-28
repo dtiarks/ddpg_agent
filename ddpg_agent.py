@@ -305,8 +305,8 @@ if __name__ == '__main__':
     
     params={
             "Env":'Pendulum-v0',
-            "episodes":1000,
-            "epoches":100000,
+            "episodes":100000,
+            "epoches":10,
             "testruns":30,
             "testeps":0.05,
             "testevery":150000,

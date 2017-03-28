@@ -310,7 +310,7 @@ if __name__ == '__main__':
             "testruns":30,
             "testeps":0.05,
             "testevery":150000,
-            "timesteps":500,#10000,
+            "timesteps":1000,#10000,
             "batchsize":64,
             "replaymemory":250000,
             "targetupdate":1,
@@ -449,8 +449,8 @@ if __name__ == '__main__':
                         
                     ddpga.updateTarget()
                     
-                    if c%params["testevery"]==0:
-                        epoche_done=True
+#                    if c%params["testevery"]==0:
+#                        epoche_done=True
                         
                             
                     if done: 

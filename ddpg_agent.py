@@ -454,7 +454,6 @@ if __name__ == '__main__':
                         
                             
                     if done: 
-#                        if i%params["metricupdate"]==0:
                         dtFrame=(t2Frame-t1Frame)
                         t2=time.clock()
                         if t>0:
@@ -467,13 +466,12 @@ if __name__ == '__main__':
                     
                 dtFrame=(t2Frame-t1Frame)
                 t2=time.clock()
-                if t>0:
-                    rate=ep_ctr/(t2-t1)
-                    print("\r[Epoch: {} || it-rate: {} || Loss: {} || Reward: {}|| Frame: {}]".format(e,rate,loss,rcum,c),end='')
+                rate=ep_ctr/(t2-t1)
+                print("\r[Epoch: {} || steps: {} || Loss: {} || Reward: {}|| Frame: {}]".format(e,t,loss,rcum,c),end='')
                                 
-                    sys.stdout.flush()
-#                    if rcum.shape>1:
-                    ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
+                sys.stdout.flush()
+#                   if rcum.shape>1:
+                ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
                     
                 
                 

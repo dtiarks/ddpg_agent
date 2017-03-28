@@ -158,7 +158,7 @@ class CriticNet(object):
         initial = tf.random_uniform(shape, minval=vals[0],maxval=vals[1])
         var=tf.Variable(initial,trainable=self.train,name=name)
         if self.wd:
-            weight_decay = tf.mul(tf.nn.l2_loss(var), self.wd, name='weight_loss')
+            weight_decay = tf.multiply(tf.nn.l2_loss(var), self.wd, name='weight_loss')
             tf.add_to_collection('losses', weight_decay)
         return var
 

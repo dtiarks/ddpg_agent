@@ -310,7 +310,7 @@ if __name__ == '__main__':
             "testruns":30,
             "testeps":0.05,
             "testevery":150000,
-            "timesteps":1000,#10000,
+            "timesteps":2500,#10000,
             "batchsize":64,
             "replaymemory":250000,
             "targetupdate":1,
@@ -456,22 +456,12 @@ if __name__ == '__main__':
                     if done: 
                         dtFrame=(t2Frame-t1Frame)
                         t2=time.clock()
-                        if t>0:
-                            rate=ep_ctr/(t2-t1)
-                            print("\r[Epis: {} || it-rate: {} || Loss: {} || Reward: {}|| Frame: {}]".format(i,rate,loss,rcum,c),end='')
+                        rate=ep_ctr/(t2-t1)
+                        print("\r[Epoch: {} || steps: {} || Loss: {} || Reward: {}|| Frame: {}]".format(e,t,loss,rcum,c),end='')
                             
                         sys.stdout.flush()
                         ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
                         break
-                    
-                dtFrame=(t2Frame-t1Frame)
-                t2=time.clock()
-                rate=ep_ctr/(t2-t1)
-                print("\r[Epoch: {} || steps: {} || Loss: {} || Reward: {}|| Frame: {}]".format(e,t,loss,rcum,c),end='')
-                                
-                sys.stdout.flush()
-#                   if rcum.shape>1:
-                ddpga.saveStats(rcum,t,ep_ctr/(t2-t1))
                     
                 
                 

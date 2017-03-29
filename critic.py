@@ -51,16 +51,19 @@ class CriticNet(object):
                 h_fc1 = tf.nn.relu(tf.matmul(input_layer, self.W_fc1) + self.b_fc1)
                 
             with tf.name_scope('fc2'):
-                self.W_fc2 = self._weight_variable([400, 300],"W_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
+                self.W_fc2 = self._weight_variable([400+self.params["actionsize"], 300],"W_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
                 self.params_list.append(self.W_fc2)
                 
                 self.b_fc2 = self._bias_variable([300],"b_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
                 self.params_list.append(self.b_fc2)
                 
-                self.W_fc2_action = self._weight_variable([self.params['actionsize'], 300],"W_fc2_action",vals=(-1./np.sqrt(self.params['actionsize']),1./np.sqrt(self.params['actionsize'])))
-                self.params_list.append(self.W_fc2_action)
+                h_fc1a=tf.concat(1,[h_fc1,action_layer])
+                h_fc2 = tf.nn.relu(tf.matmul(h_fc1a, self.W_fc2) + self.b_fc2)
+                
+#                self.W_fc2_action = self._weight_variable([self.params['actionsize'], 300],"W_fc2_action",vals=(-1./np.sqrt(self.params['actionsize']),1./np.sqrt(self.params['actionsize'])))
+#                self.params_list.append(self.W_fc2_action)
             
-                h_fc2 = tf.nn.relu(tf.matmul(h_fc1, self.W_fc2) + tf.matmul(action_layer, self.W_fc2_action) + self.b_fc2)
+                #h_fc2 = tf.nn.relu(tf.matmul(h_fc1, self.W_fc2) + tf.matmul(action_layer, self.W_fc2_action) + self.b_fc2)
                 
             with tf.name_scope('output'):
                 self.W_fc3 = self._weight_variable([300, 1],"W_out")
@@ -69,7 +72,7 @@ class CriticNet(object):
                 self.b_fc3 = self._bias_variable([1],"b_out")
                 self.params_list.append(self.b_fc3)
                 
-            self.out=tf.matmul(h_fc2, self.W_fc3) + self.b_fc3
+            self.out=tf.squeeze(tf.matmul(h_fc2, self.W_fc3) + self.b_fc3,[1])
                               
         return self.out
         

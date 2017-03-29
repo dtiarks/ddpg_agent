@@ -317,7 +317,7 @@ if __name__ == '__main__':
             "discount":0.99,
             "learningrate_actor":1e-4,
             "learningrate_critic":1e-3,
-            "huberloss":False,
+            "huberloss":True,
             "gradientmomentum":0.99,
             "sqgradientmomentum":0.95,
             "mingradientmomentum":0.00,

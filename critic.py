@@ -57,7 +57,7 @@ class CriticNet(object):
                 self.b_fc2 = self._bias_variable([300],"b_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
                 self.params_list.append(self.b_fc2)
                 
-                h_fc1a=tf.concat(1,[h_fc1,action_layer])
+                h_fc1a=tf.concat([h_fc1,action_layer],1)
                 h_fc2 = tf.nn.relu(tf.matmul(h_fc1a, self.W_fc2) + self.b_fc2)
                 
 #                self.W_fc2_action = self._weight_variable([self.params['actionsize'], 300],"W_fc2_action",vals=(-1./np.sqrt(self.params['actionsize']),1./np.sqrt(self.params['actionsize'])))

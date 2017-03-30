@@ -228,7 +228,8 @@ class DDPGAgent(object):
                    self.cr_predict.action_placeholder: np.array(sample[1],dtype=np.float32),
                    self.cr_target.reward_placeholder: np.array(sample[2],dtype=np.float32),
                    self.cr_target.input_placeholder: np.array(sample[3],dtype=np.float32),
-                   self.cr_target.action_placeholder: actor_actions}
+                   self.cr_target.action_placeholder: actor_actions,
+                   self.cr_target.done_placeholder: sample[4]}
         
         return cr_batch
     

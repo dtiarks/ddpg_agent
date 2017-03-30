@@ -51,7 +51,7 @@ class CriticNet(object):
                 h_fc1 = tf.nn.relu(tf.matmul(input_layer, self.W_fc1) + self.b_fc1)
                 
             with tf.name_scope('fc2'):
-                self.W_fc2 = self._weight_variable([401, 300],"W_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
+                self.W_fc2 = self._weight_variable([400+self.params["actionsize"], 300],"W_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
                 self.params_list.append(self.W_fc2)
                 
                 self.b_fc2 = self._bias_variable([300],"b_fc2",vals=(-1./np.sqrt(400),1./np.sqrt(400)))
@@ -133,7 +133,7 @@ class CriticNet(object):
         return self.out
     
     def estimateTarget(self):
-        ret=self.reward_placeholder+tf.scalar_mul(self.params['discount'],self.out)
+        ret=self.reward_placeholder+tf.multiply(self.done_placeholder,tf.scalar_mul(self.params['discount'],self.out))
         return ret
     
     def getGradients(self,feed):

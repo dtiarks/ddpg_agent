@@ -1,13 +1,13 @@
-## Tensorflow implementation of the DDPG algorithm
-_____________________
+# Tensorflow implementation of the DDPG algorithm
+
 This is a reimplementation of the work presented in
-#### Paper
+## Paper
 > Continuous control with deep reinforcement learning
 > https://arxiv.org/abs/1509.02971
 
 
 
-#### Some examples:
+## Some examples:
 
 - Hopper environment
 
